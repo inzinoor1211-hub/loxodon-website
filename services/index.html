@@ -1,0 +1,1277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services — Loxodon</title>
+    <meta name="description"
+        content="Explore Loxodon's enterprise services: Custom ERP, WMS, Workflow Automation, Cloud Infrastructure, IT Consulting, and System Integration — from discovery to handover.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <style>
+        /* ── Reset & Base ─────────────── */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            font-family: "Inter", sans-serif;
+            background: #fff;
+            color: #0f172a;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        /* ── Nav ──────────────────────── */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(255, 255, 255, .92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .nav-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 72px;
+        }
+
+        .nav-link {
+            font-size: .75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .1em;
+            color: #0f172a;
+            transition: color .2s;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: #2b6cee;
+        }
+
+        #desktop-nav {
+            display: none;
+            align-items: center;
+            gap: 2.5rem;
+        }
+
+        @media (min-width: 768px) {
+            #desktop-nav {
+                display: flex;
+            }
+
+            #ham {
+                display: none !important;
+            }
+        }
+
+        /* ── Hamburger ────────────────── */
+        #ham span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: #0f172a;
+            border-radius: 2px;
+            transition: transform .3s, opacity .3s;
+        }
+
+        #ham {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: .5rem;
+            background: none;
+            border: none;
+        }
+
+        #ham.active span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+
+        #ham.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        #ham.active span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+
+        #mobile-menu {
+            display: none;
+            flex-direction: column;
+            gap: .75rem;
+            padding: 1.25rem 1.5rem 1.5rem;
+            border-top: 1px solid #f1f5f9;
+            background: #fff;
+        }
+
+        #mobile-menu.open {
+            display: flex;
+        }
+
+        /* ── Buttons ──────────────────── */
+        .btn-primary {
+            display: inline-block;
+            background: #2b6cee;
+            color: #fff;
+            padding: 1rem 2.25rem;
+            border-radius: .35rem;
+            font-size: .72rem;
+            font-weight: 800;
+            letter-spacing: .25em;
+            text-transform: uppercase;
+            transition: background .2s, transform .15s, box-shadow .2s;
+            box-shadow: 0 8px 30px -8px rgba(43, 108, 238, .45);
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background: #010e2d;
+            transform: translateY(-1px);
+        }
+
+        .btn-dark {
+            display: inline-block;
+            background: #010e2d;
+            color: #fff;
+            padding: .65rem 1.5rem;
+            border-radius: .35rem;
+            font-size: .68rem;
+            font-weight: 800;
+            letter-spacing: .25em;
+            text-transform: uppercase;
+            transition: background .2s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-dark:hover {
+            background: #2b6cee;
+        }
+
+        /* ── Section label ────────────── */
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: .4rem;
+            padding: .25rem .75rem;
+            background: #f1f5f9;
+            border: 1px solid #e2e8f0;
+            font-size: .6rem;
+            font-weight: 800;
+            letter-spacing: .2em;
+            text-transform: uppercase;
+            color: #0f172a;
+            border-radius: .2rem;
+        }
+
+        /* ── Hero ─────────────────────── */
+        .hero {
+            position: relative;
+            overflow: hidden;
+            padding: 7rem 1.5rem 6rem;
+            background: #010e2d;
+            text-align: center;
+        }
+
+        /* Grid pattern overlay */
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(43, 108, 238, .06) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(43, 108, 238, .06) 1px, transparent 1px);
+            background-size: 48px 48px;
+            pointer-events: none;
+        }
+
+        /* Radial glow */
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: -20%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 900px;
+            height: 600px;
+            background: radial-gradient(ellipse, rgba(43, 108, 238, .25) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-inner {
+            max-width: 860px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 900;
+            color: #fff;
+            letter-spacing: -.04em;
+            line-height: 1;
+            margin: 1.25rem 0 1.25rem;
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 2vw, 1.15rem);
+            color: #64748b;
+            line-height: 1.7;
+            max-width: 640px;
+            margin: 0 auto;
+        }
+
+        /* ── Breadcrumb ───────────────── */
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: .4rem;
+            font-size: .65rem;
+            font-weight: 700;
+            letter-spacing: .15em;
+            text-transform: uppercase;
+            color: #94a3b8;
+            margin-bottom: .75rem;
+        }
+
+        .breadcrumb a {
+            color: #2b6cee;
+        }
+
+        .breadcrumb span {
+            color: #cbd5e1;
+        }
+
+        /* ── Divider ──────────────────── */
+        .divider {
+            width: 100%;
+            height: 1px;
+            background: #f1f5f9;
+        }
+
+        /* ── Services Grid ────────────── */
+        .services-section {
+            padding: 5rem 1.5rem 6rem;
+            background: #f8fafc;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.75rem;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        @media (min-width: 600px) {
+            .services-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (min-width: 900px) {
+            .services-grid {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .services-grid {
+                grid-template-columns: 1fr 1fr 1fr 1fr;
+            }
+        }
+
+        /* Image-header card */
+        .service-card {
+            background: #fff;
+            border-radius: 1rem;
+            overflow: hidden;
+            border: 1px solid #f1f5f9;
+            box-shadow: 0 2px 12px -4px rgba(0, 0, 0, .08);
+            transition: transform .3s cubic-bezier(.22, .68, 0, 1.2), box-shadow .3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .service-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 24px 60px -12px rgba(0, 0, 0, .18);
+        }
+
+        /* Cover image wrapper */
+        .sc-img {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .sc-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform .5s ease;
+        }
+
+        .service-card:hover .sc-img img {
+            transform: scale(1.07);
+        }
+
+        /* Gradient overlay on image */
+        .sc-img::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(1, 14, 45, .1) 0%, rgba(1, 14, 45, .55) 100%);
+            transition: opacity .3s;
+        }
+
+        /* Category badge on image */
+        .sc-badge {
+            position: absolute;
+            top: .9rem;
+            left: .9rem;
+            z-index: 2;
+            background: rgba(43, 108, 238, .9);
+            color: #fff;
+            font-size: .55rem;
+            font-weight: 800;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            padding: .3rem .7rem;
+            border-radius: .25rem;
+            backdrop-filter: blur(4px);
+        }
+
+        /* Icon badge bottom-right of image */
+        .sc-icon-wrap {
+            position: absolute;
+            bottom: -1.25rem;
+            right: 1.25rem;
+            z-index: 3;
+            width: 2.75rem;
+            height: 2.75rem;
+            background: #fff;
+            border-radius: .5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, .12);
+            border: 1px solid #f1f5f9;
+        }
+
+        .sc-icon-wrap span {
+            color: #2b6cee;
+            font-size: 1.3rem;
+        }
+
+        /* Card body */
+        .sc-body {
+            padding: 2rem 1.5rem 1.75rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sc-body h3 {
+            font-size: .95rem;
+            font-weight: 800;
+            color: #0f172a;
+            margin-bottom: .6rem;
+            letter-spacing: -.01em;
+        }
+
+        .sc-body p {
+            font-size: .8rem;
+            color: #64748b;
+            line-height: 1.65;
+            flex: 1;
+        }
+
+        .sc-link {
+            display: inline-flex;
+            align-items: center;
+            gap: .35rem;
+            margin-top: 1.25rem;
+            font-size: .65rem;
+            font-weight: 800;
+            letter-spacing: .15em;
+            text-transform: uppercase;
+            color: #2b6cee;
+            transition: gap .2s;
+        }
+
+        .sc-link:hover {
+            gap: .6rem;
+        }
+
+        /* ── Process Section ──────────── */
+        .process-section {
+            padding: 5rem 1.5rem 6rem;
+            background: #f8fafc;
+        }
+
+        .process-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .process-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .process-header h2 {
+            font-size: clamp(1.8rem, 4vw, 2.75rem);
+            font-weight: 900;
+            color: #010e2d;
+            letter-spacing: -.03em;
+            margin: 1rem 0 .75rem;
+        }
+
+        .process-header p {
+            font-size: 1rem;
+            color: #64748b;
+            max-width: 560px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* Desktop: horizontal stepper */
+        .steps-track {
+            display: none;
+            position: relative;
+            padding: 0 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .steps-track {
+                display: flex;
+                align-items: flex-start;
+                gap: 0;
+            }
+        }
+
+        /* Connector line behind the steps */
+        .steps-track::before {
+            content: '';
+            position: absolute;
+            top: 2rem;
+            left: calc(10% + 1.5rem);
+            right: calc(10% + 1.5rem);
+            height: 2px;
+            background: linear-gradient(to right, #2b6cee, #93c5fd);
+            z-index: 0;
+        }
+
+        .step-desktop {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            padding: 0 .5rem;
+        }
+
+        .step-number {
+            width: 4rem;
+            height: 4rem;
+            background: #fff;
+            border: 2px solid #2b6cee;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            font-weight: 900;
+            color: #2b6cee;
+            margin-bottom: 1.25rem;
+            box-shadow: 0 0 0 6px #f8fafc;
+            transition: background .3s, color .3s;
+        }
+
+        .step-desktop:hover .step-number {
+            background: #2b6cee;
+            color: #fff;
+        }
+
+        .step-desktop h4 {
+            font-size: .85rem;
+            font-weight: 800;
+            color: #0f172a;
+            margin-bottom: .4rem;
+            letter-spacing: -.01em;
+        }
+
+        .step-desktop p {
+            font-size: .75rem;
+            color: #64748b;
+            line-height: 1.6;
+            max-width: 160px;
+            margin: 0 auto;
+        }
+
+        /* Mobile: vertical stepper */
+        .steps-mobile {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        @media (min-width: 768px) {
+            .steps-mobile {
+                display: none;
+            }
+        }
+
+        .step-mobile {
+            display: flex;
+            gap: 1.25rem;
+            padding: 0 0 2rem;
+            position: relative;
+        }
+
+        .step-mobile:not(:last-child)::before {
+            content: '';
+            position: absolute;
+            left: 1.25rem;
+            top: 3rem;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #2b6cee, #93c5fd);
+        }
+
+        .step-mobile-num {
+            width: 2.5rem;
+            height: 2.5rem;
+            flex-shrink: 0;
+            background: #2b6cee;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .85rem;
+            font-weight: 900;
+            color: #fff;
+            position: relative;
+            z-index: 1;
+        }
+
+        .step-mobile-content {
+            padding-top: .35rem;
+        }
+
+        .step-mobile h4 {
+            font-size: .9rem;
+            font-weight: 800;
+            color: #0f172a;
+            margin-bottom: .35rem;
+        }
+
+        .step-mobile p {
+            font-size: .8rem;
+            color: #64748b;
+            line-height: 1.6;
+        }
+
+        /* ── CTA section ──────────────── */
+        .cta-section {
+            padding: 5rem 1.5rem;
+            background: #010e2d;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: clamp(1.8rem, 4vw, 2.75rem);
+            font-weight: 900;
+            color: #fff;
+            letter-spacing: -.03em;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, .6);
+            line-height: 1.7;
+            max-width: 540px;
+            margin: 0 auto 2.5rem;
+        }
+
+        /* ── Footer ───────────────────── */
+        footer {
+            background: #fff;
+            padding: 4rem 1.5rem 2rem;
+            border-top: 1px solid #f1f5f9;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+            max-width: 1280px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @media (min-width: 768px) {
+            .footer-grid {
+                grid-template-columns: 2fr 1fr 1fr;
+            }
+        }
+
+        .footer-link {
+            color: #64748b;
+            font-size: .72rem;
+            font-weight: 700;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            transition: color .2s;
+        }
+
+        .footer-link:hover {
+            color: #2b6cee;
+        }
+
+        .footer-bottom {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding-top: 1.5rem;
+            border-top: 1px solid #f1f5f9;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .social-btn {
+            width: 2.4rem;
+            height: 2.4rem;
+            border: 1px solid #f1f5f9;
+            border-radius: .4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0f172a;
+            transition: background .2s, color .2s, border-color .2s;
+        }
+
+        .social-btn:hover {
+            background: #2b6cee;
+            color: #fff;
+            border-color: #2b6cee;
+        }
+
+        /* ── New dark footer ────────────── */
+        .footer-main-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+        }
+
+        @media (min-width: 768px) {
+            .footer-main-grid {
+                grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            }
+        }
+
+        .footer-nav-link:hover {
+            color: #60a5fa !important;
+        }
+
+        .footer-social:hover {
+            background: rgba(43, 108, 238, .2) !important;
+            border-color: rgba(43, 108, 238, .5) !important;
+            color: #60a5fa !important;
+        }
+
+        /* ── Fade-in ──────────────────── */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity .55s ease, transform .55s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: none;
+        }
+
+        /* ── Pulse ────────────────────── */
+        @keyframes pulse-dot {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: .5;
+                transform: scale(.8);
+            }
+        }
+
+        .pulse-dot {
+            animation: pulse-dot 1.8s infinite;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ═══════════════════ NAV ═══════════════════ -->
+    <nav>
+        <div class="nav-inner">
+            <a href="/" style="display:flex;align-items:center;flex-shrink:0;">
+                <img src="/loxodon-logo.png" alt="Loxodon" style="height:36px;width:auto;object-fit:contain;"
+                    onerror="this.style.display='none';document.getElementById('logo-fallback').style.display='flex'">
+                <div id="logo-fallback" style="display:none;align-items:center;gap:4px;">
+                    <span
+                        style="font-size:1.5rem;font-weight:900;letter-spacing:-.04em;color:#010e2d;text-transform:uppercase;">Loxodon</span>
+                    <div style="display:flex;flex-direction:column;gap:3px;">
+                        <div style="width:7px;height:7px;background:#dc2626;"></div>
+                        <div style="width:7px;height:7px;background:#16a34a;"></div>
+                    </div>
+                </div>
+            </a>
+
+            <div id="desktop-nav">
+
+                <a class="nav-link active" href="/services/">Services</a>
+                <a class="nav-link" href="/#automation">Portfolio</a>
+                <a class="nav-link" href="/about/">About</a>
+                <a href="/#contact" class="btn-dark">GET IN TOUCH</a>
+            </div>
+
+            <button id="ham" aria-label="Toggle menu" onclick="toggleMenu()">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+
+        <div id="mobile-menu">
+
+            <a class="nav-link active" href="/services/" onclick="closeMenu()">Services</a>
+            <a class="nav-link" href="/#automation" onclick="closeMenu()">Portfolio</a>
+            <a class="nav-link" href="/about/" onclick="closeMenu()">About</a>
+            <a href="/#contact" onclick="closeMenu()" class="btn-primary"
+                style="margin-top:.5rem;text-align:center;">GET IN TOUCH</a>
+        </div>
+    </nav>
+
+    <!-- ═══════════════════ HERO ═══════════════════ -->
+    <header class="hero">
+        <div class="hero-inner" style="position:relative;z-index:1;">
+            <!-- Eyebrow pill -->
+            <div class="fade-in"
+                style="display:inline-flex;align-items:center;gap:.5rem;margin-bottom:1.75rem;background:rgba(43,108,238,.12);border:1px solid rgba(43,108,238,.25);color:#93c5fd;font-size:.6rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase;padding:.35rem .9rem;border-radius:2rem;">
+                <span style="width:6px;height:6px;background:#2b6cee;border-radius:50%;flex-shrink:0;"
+                    class="pulse-dot"></span>
+                What We Build
+            </div>
+            <h1 class="fade-in">Our Services</h1>
+            <p class="fade-in" style="color:rgba(255,255,255,.6);">
+                We architect and build the digital backbone of forward-thinking enterprises — from custom ERPs to cloud
+                migration, Loxodon delivers reliability at scale.
+            </p>
+            <!-- Stats row -->
+            <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:2.5rem;margin-top:3rem;padding-top:3rem;border-top:1px solid rgba(255,255,255,.08);"
+                class="fade-in">
+                <div style="text-align:center;"><span
+                        style="display:block;font-size:2rem;font-weight:900;color:#fff;letter-spacing:-.04em;">8</span><span
+                        style="font-size:.6rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:.25rem;display:block;">Core
+                        Services</span></div>
+                <div style="text-align:center;"><span
+                        style="display:block;font-size:2rem;font-weight:900;color:#fff;letter-spacing:-.04em;">10+</span><span
+                        style="font-size:.6rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:.25rem;display:block;">Projects
+                        Delivered</span></div>
+                <div style="text-align:center;"><span
+                        style="display:block;font-size:2rem;font-weight:900;color:#fff;letter-spacing:-.04em;">End-to-End</span><span
+                        style="font-size:.6rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:.25rem;display:block;">From
+                        Consult to Handover</span></div>
+            </div>
+        </div>
+    </header>
+
+    <div class="divider"></div>
+
+    <!-- ═══════════════════ SERVICES GRID ═══════════════════ -->
+    <section class="services-section" id="services-list">
+        <div style="max-width:1280px;margin:0 auto;">
+            <div style="text-align:center;margin-bottom:3.5rem;" class="fade-in">
+                <div class="section-label" style="margin:0 auto 1rem;width:fit-content;">Our Expertise</div>
+                <h2
+                    style="font-size:clamp(1.8rem,4vw,2.75rem);font-weight:900;color:#010e2d;letter-spacing:-.03em;margin-bottom:.75rem;">
+                    Digital Infrastructure Services</h2>
+                <p style="font-size:1rem;color:#64748b;max-width:560px;margin:0 auto;line-height:1.7;">End-to-end
+                    engineering solutions built for the unique operational demands of your business.</p>
+            </div>
+
+            <div class="services-grid">
+
+                <!-- ERP -->
+                <div class="service-card fade-in">
+                    <div class="sc-img">
+                        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&q=80"
+                            alt="Custom ERP" loading="lazy">
+                        <span class="sc-badge">Operations</span>
+                        <div class="sc-icon-wrap"><span class="material-symbols-outlined">account_tree</span></div>
+                    </div>
+                    <div class="sc-body">
+                        <h3>Custom ERP Development</h3>
+                        <p>Tailored enterprise resource planning built around your workflows — finance, HR, procurement,
+                            and operations unified in one cohesive platform.</p>
+                        <a href="/#contact" class="sc-link">Get Started <span class="material-icons"
+                                style="font-size:.85rem;">arrow_forward</span></a>
+                    </div>
+                </div>
+
+                <!-- WMS -->
+                <div class="service-card fade-in">
+                    <div class="sc-img">
+                        <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&q=80"
+                            alt="Warehouse Management" loading="lazy">
+                        <span class="sc-badge">Logistics</span>
+                        <div class="sc-icon-wrap"><span class="material-symbols-outlined">inventory_2</span></div>
+                    </div>
+                    <div class="sc-body">
+                        <h3>Warehouse Management Systems</h3>
+                        <p>IoT-integrated WMS solutions that eliminate errors, optimize inventory flow, and deliver
+                            99.9% fulfillment accuracy across your supply chain.</p>
+                        <a href="/#contact" class="sc-link">Get Started <span class="material-icons"
+                                style="font-size:.85rem;">arrow_forward</span></a>
+                    </div>
+                </div>
+
+                <!-- Automation -->
+                <div class="service-card fade-in">
+                    <div class="sc-img">
+                        <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=600&q=80"
+                            alt="Workflow Automation" loading="lazy">
+                        <span class="sc-badge">Automation</span>
+                        <div class="sc-icon-wrap"><span class="material-symbols-outlined">hub</span></div>
+                    </div>
+                    <div class="sc-body">
+                        <h3>Workflow &amp; Process Automation</h3>
+                        <p>Intelligent automation layers that connect legacy systems to modern cloud tools, removing
+                            bottlenecks and accelerating decision-making at scale.</p>
+                        <a href="/#contact" class="sc-link">Get Started <span class="material-icons"
+                                style="font-size:.85rem;">arrow_forward</span></a>
+                    </div>
+                </div>
+
+                <!-- Cloud -->
+                <div class="service-card fade-in">
+                    <div class="sc-img">
+                        <img src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=600&q=80"
+                            alt="Cloud Infrastructure" loading="lazy">
+                        <span class="sc-badge">Cloud</span>
+                        <div class="sc-icon-wrap"><span class="material-symbols-outlined">cloud_sync</span></div>
+                    </div>
+                    <div class="sc-body">
+                        <h3>Cloud Infrastructure &amp; Migration</h3>
+                        <p>Secure, cost-efficient migration to AWS or Azure with full architecture management,
+                            monitoring, and 24/7 uptime guarantees.</p>
+                        <a href="/#contact" class="sc-link">Get Started <span class="material-icons"
+                                style="font-size:.85rem;">arrow_forward</span></a>
+                    </div>
+                </div>
+
+                <!-- Consulting -->
+                <div class="service-card fade-in">
+                    <div class="sc-img">
+                        <img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?w=600&q=80"
+                            alt="IT Consulting" loading="lazy">
+                        <span class="sc-badge">Strategy</span>
+                        <div class="sc-icon-wrap"><span class="material-symbols-outlined">lightbulb</span></div>
+                    </div>
+                    <div class="sc-body">
+                        <h3>IT Consulting &amp; Architecture</h3>
+                        <p>Strategic technology roadmaps crafted by senior architects — helping you make the right
+                            infrastructure decisions before you build.</p>
+                        <a href="/#contact" class="sc-link">Get Started <span class="material-icons"
+                                style="font-size:.85rem;">arrow_forward</span></a>
+                    </div>
+                </div>
+
+                <!-- Integration -->
+                <div class="service-card fade-in">
+                    <div class="sc-img">
+                        <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&q=80"
+                            alt="System Integration" loading="lazy">
+                        <span class="sc-badge">Integration</span>
+                        <div class="sc-icon-wrap"><span class="material-symbols-outlined">cable</span></div>
+                    </div>
+                    <div class="sc-body">
+                        <h3>System Integration &amp; APIs</h3>
+                        <p>Custom middleware and REST/GraphQL APIs that seamlessly connect your disparate software
+                            ecosystem into one reliable data pipeline.</p>
+                        <a href="/#contact" class="sc-link">Get Started <span class="material-icons"
+                                style="font-size:.85rem;">arrow_forward</span></a>
+                    </div>
+                </div>
+
+                <!-- Custom Apps (NEW) -->
+                <div class="service-card fade-in">
+                    <div class="sc-img">
+                        <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=600&q=80"
+                            alt="Custom App Development" loading="lazy">
+                        <span class="sc-badge">Mobile &amp; Web Apps</span>
+                        <div class="sc-icon-wrap"><span class="material-symbols-outlined">smartphone</span></div>
+                    </div>
+                    <div class="sc-body">
+                        <h3>Custom App Development</h3>
+                        <p>End-to-end development of enterprise-grade web and mobile applications — from concept and UX
+                            design to deployment, scalable and built to last.</p>
+                        <a href="/#contact" class="sc-link">Get Started <span class="material-icons"
+                                style="font-size:.85rem;">arrow_forward</span></a>
+                    </div>
+                </div>
+
+                <!-- E-commerce (NEW) -->
+                <div class="service-card fade-in">
+                    <div class="sc-img">
+                        <img src="https://images.unsplash.com/photo-1523474253046-8cd2748b5fd2?w=600&q=80"
+                            alt="E-commerce Websites" loading="lazy">
+                        <span class="sc-badge">E-commerce</span>
+                        <div class="sc-icon-wrap"><span class="material-symbols-outlined">shopping_cart</span></div>
+                    </div>
+                    <div class="sc-body">
+                        <h3>E-commerce Websites</h3>
+                        <p>High-converting, performance-optimised e-commerce platforms with secure payment gateways,
+                            custom storefronts, and real-time inventory sync.</p>
+                        <a href="/#contact" class="sc-link">Get Started <span class="material-icons"
+                                style="font-size:.85rem;">arrow_forward</span></a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ═══════════════════ PROCESS SECTION ═══════════════════ -->
+    <section class="process-section" id="process">
+        <div class="process-inner">
+
+            <div class="process-header fade-in">
+                <div class="section-label" style="margin:0 auto 1rem;width:fit-content;">How We Work</div>
+                <h2>Our Operations Process</h2>
+                <p>From the first conversation to final handover — every project follows a structured, transparent
+                    process built for enterprise reliability.</p>
+            </div>
+
+            <!-- Desktop horizontal stepper -->
+            <div class="steps-track fade-in">
+
+                <div class="step-desktop">
+                    <div class="step-number">01</div>
+                    <h4>Client Discovery</h4>
+                    <p>Initial meeting, requirements gathering, pain points and objectives defined.</p>
+                </div>
+
+                <div class="step-desktop">
+                    <div class="step-number">02</div>
+                    <h4>Architecture &amp; Planning</h4>
+                    <p>System design, technical roadmap, scope and proposal sign-off.</p>
+                </div>
+
+                <div class="step-desktop">
+                    <div class="step-number">03</div>
+                    <h4>Development &amp; Testing</h4>
+                    <p>Agile sprints, rigorous QA, staging environment sign-off.</p>
+                </div>
+
+                <div class="step-desktop">
+                    <div class="step-number">04</div>
+                    <h4>Deploy &amp; Go-Live</h4>
+                    <p>Production launch with live monitoring and zero-downtime cutover.</p>
+                </div>
+
+                <div class="step-desktop">
+                    <div class="step-number">05</div>
+                    <h4>Handover &amp; Support</h4>
+                    <p>Documentation, team training, and ongoing 24/7 support contract.</p>
+                </div>
+
+            </div>
+
+            <!-- Mobile vertical stepper -->
+            <div class="steps-mobile fade-in">
+
+                <div class="step-mobile">
+                    <div class="step-mobile-num">01</div>
+                    <div class="step-mobile-content">
+                        <h4>Client Discovery</h4>
+                        <p>Initial meeting, requirements gathering, pain points and objectives defined.</p>
+                    </div>
+                </div>
+
+                <div class="step-mobile">
+                    <div class="step-mobile-num">02</div>
+                    <div class="step-mobile-content">
+                        <h4>Architecture &amp; Planning</h4>
+                        <p>System design, technical roadmap, scope and proposal sign-off.</p>
+                    </div>
+                </div>
+
+                <div class="step-mobile">
+                    <div class="step-mobile-num">03</div>
+                    <div class="step-mobile-content">
+                        <h4>Development &amp; Testing</h4>
+                        <p>Agile sprints, rigorous QA, staging environment sign-off.</p>
+                    </div>
+                </div>
+
+                <div class="step-mobile">
+                    <div class="step-mobile-num">04</div>
+                    <div class="step-mobile-content">
+                        <h4>Deploy &amp; Go-Live</h4>
+                        <p>Production launch with live monitoring and zero-downtime cutover.</p>
+                    </div>
+                </div>
+
+                <div class="step-mobile">
+                    <div class="step-mobile-num">05</div>
+                    <div class="step-mobile-content">
+                        <h4>Handover &amp; Support</h4>
+                        <p>Documentation, team training, and ongoing 24/7 support contract.</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ═══════════════════ CTA ═══════════════════ -->
+    <section class="cta-section">
+        <div style="max-width:700px;margin:0 auto;" class="fade-in">
+            <div class="section-label"
+                style="margin:0 auto 1.25rem;width:fit-content;background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.12);color:rgba(255,255,255,.7);">
+                Ready to Start</div>
+            <h2>Ready to Scale Your Infrastructure?</h2>
+            <p>Let's discuss how Loxodon can modernize your enterprise operations. Our architects are available for a
+                free initial consultation.</p>
+            <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:1rem;">
+                <a href="/#contact" class="btn-primary"
+                    style="box-shadow:0 8px 30px -8px rgba(255,255,255,.2);">REQUEST A CONSULTATION</a>
+                <a href="mailto:connect@loxodontech.com"
+                    style="display:inline-block;color:rgba(255,255,255,.7);font-size:.72rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;padding:1rem 2.25rem;border:1px solid rgba(255,255,255,.2);border-radius:.35rem;transition:border-color .2s,color .2s;">connect@loxodontech.com</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════ FOOTER ═══════════════════ -->
+    <footer style="background:#010e2d;position:relative;overflow:hidden;">
+        <div
+            style="position:absolute;inset:0;background-image:linear-gradient(rgba(43,108,238,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(43,108,238,.04) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;">
+        </div>
+
+        <!-- Top CTA strip -->
+        <div style="border-bottom:1px solid rgba(255,255,255,.07);padding:3.5rem 1.5rem;position:relative;z-index:1;">
+            <div
+                style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:2rem;">
+                <div>
+                    <div
+                        style="font-size:.6rem;font-weight:800;letter-spacing:.25em;text-transform:uppercase;color:#3b82f6;margin-bottom:.5rem;">
+                        Ready to Scale?</div>
+                    <h3
+                        style="font-size:clamp(1.25rem,3vw,2rem);font-weight:900;color:#fff;letter-spacing:-.03em;margin:0;line-height:1.2;">
+                        Let's Engineer Your Infrastructure.</h3>
+                </div>
+                <a href="/#contact"
+                    style="display:inline-flex;align-items:center;gap:.6rem;background:#2b6cee;color:#fff;padding:.9rem 2rem;border-radius:.35rem;font-size:.7rem;font-weight:800;letter-spacing:.25em;text-transform:uppercase;text-decoration:none;white-space:nowrap;flex-shrink:0;"
+                    onmouseover="this.style.background='#1e4fcf'" onmouseout="this.style.background='#2b6cee'">
+                    <span class="material-icons" style="font-size:1rem;">arrow_forward</span>
+                    Request a Consultation
+                </a>
+            </div>
+        </div>
+
+        <!-- Main grid -->
+        <div style="max-width:1280px;margin:0 auto;padding:4rem 1.5rem 3rem;position:relative;z-index:1;"
+            class="footer-main-grid">
+            <div>
+                <a href="/"
+                    style="display:inline-flex;align-items:center;gap:8px;margin-bottom:1.5rem;text-decoration:none;">
+                    <img src="/loxodon-logo.png" alt="Loxodon"
+                        style="height:32px;width:auto;object-fit:contain;filter:brightness(0) invert(1);"
+                        onerror="this.style.display='none';this.nextElementSibling.style.display='inline-block'">
+                    <span
+                        style="display:none;font-size:1.2rem;font-weight:900;letter-spacing:-.03em;color:#fff;text-transform:uppercase;">Loxodon</span>
+                </a>
+                <p
+                    style="color:rgba(255,255,255,.45);font-size:.85rem;line-height:1.75;max-width:280px;margin:0 0 1.75rem;">
+                    Digital Systems Engineering for enterprises ready to move from operational struggle to structured
+                    scale.</p>
+                <div style="display:flex;gap:.6rem;">
+                    <a href="#" aria-label="LinkedIn"
+                        style="width:2.4rem;height:2.4rem;border:1px solid rgba(255,255,255,.12);border-radius:.4rem;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.5);text-decoration:none;transition:all .2s;"
+                        class="footer-social"><span class="material-icons" style="font-size:.95rem;">business</span></a>
+                    <a href="#" aria-label="GitHub"
+                        style="width:2.4rem;height:2.4rem;border:1px solid rgba(255,255,255,.12);border-radius:.4rem;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.5);text-decoration:none;transition:all .2s;"
+                        class="footer-social"><span class="material-icons" style="font-size:.95rem;">code</span></a>
+                    <a href="mailto:connect@loxodontech.com" aria-label="Email"
+                        style="width:2.4rem;height:2.4rem;border:1px solid rgba(255,255,255,.12);border-radius:.4rem;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.5);text-decoration:none;transition:all .2s;"
+                        class="footer-social"><span class="material-icons" style="font-size:.95rem;">email</span></a>
+                    <a href="tel:+917675094065" aria-label="Phone"
+                        style="width:2.4rem;height:2.4rem;border:1px solid rgba(255,255,255,.12);border-radius:.4rem;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.5);text-decoration:none;transition:all .2s;"
+                        class="footer-social"><span class="material-icons" style="font-size:.95rem;">call</span></a>
+                </div>
+            </div>
+            <div>
+                <h4
+                    style="font-size:.6rem;font-weight:800;letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,.35);margin:0 0 1.25rem;">
+                    Solutions</h4>
+                <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.7rem;">
+                    <li><a href="/#erp"
+                            style="color:rgba(255,255,255,.6);font-size:.82rem;font-weight:500;text-decoration:none;transition:color .2s;"
+                            class="footer-nav-link">ERP Development</a></li>
+                    <li><a href="/#wms"
+                            style="color:rgba(255,255,255,.6);font-size:.82rem;font-weight:500;text-decoration:none;transition:color .2s;"
+                            class="footer-nav-link">Warehouse Management</a></li>
+                    <li><a href="/#automation"
+                            style="color:rgba(255,255,255,.6);font-size:.82rem;font-weight:500;text-decoration:none;transition:color .2s;"
+                            class="footer-nav-link">Business Automation</a></li>
+                    <li><a href="/services/"
+                            style="color:rgba(255,255,255,.6);font-size:.82rem;font-weight:500;text-decoration:none;transition:color .2s;"
+                            class="footer-nav-link">Ecommerce Infrastructure</a></li>
+                    <li><a href="/services/"
+                            style="color:rgba(255,255,255,.6);font-size:.82rem;font-weight:500;text-decoration:none;transition:color .2s;"
+                            class="footer-nav-link">Performance Marketing</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4
+                    style="font-size:.6rem;font-weight:800;letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,.35);margin:0 0 1.25rem;">
+                    Company</h4>
+                <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.7rem;">
+                    <li><a href="/about/"
+                            style="color:rgba(255,255,255,.6);font-size:.82rem;font-weight:500;text-decoration:none;transition:color .2s;"
+                            class="footer-nav-link">About Loxodon</a></li>
+                    <li><a href="/services/"
+                            style="color:rgba(255,255,255,.6);font-size:.82rem;font-weight:500;text-decoration:none;transition:color .2s;"
+                            class="footer-nav-link">Our Services</a></li>
+                    <li><a href="/#how-we-work"
+                            style="color:rgba(255,255,255,.6);font-size:.82rem;font-weight:500;text-decoration:none;transition:color .2s;"
+                            class="footer-nav-link">How We Work</a></li>
+                    <li><a href="/#contact"
+                            style="color:rgba(255,255,255,.6);font-size:.82rem;font-weight:500;text-decoration:none;transition:color .2s;"
+                            class="footer-nav-link">Request Consultation</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4
+                    style="font-size:.6rem;font-weight:800;letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,.35);margin:0 0 1.25rem;">
+                    Contact</h4>
+                <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:1rem;">
+                    <li style="display:flex;align-items:flex-start;gap:.6rem;"><span class="material-icons"
+                            style="font-size:.95rem;color:#3b82f6;margin-top:1px;flex-shrink:0;">location_on</span><span
+                            style="color:rgba(255,255,255,.55);font-size:.82rem;line-height:1.5;">T-Hub, HITEC
+                            City<br>Hyderabad, Telangana, India</span></li>
+                    <li style="display:flex;align-items:center;gap:.6rem;"><span class="material-icons"
+                            style="font-size:.95rem;color:#3b82f6;flex-shrink:0;">email</span><a
+                            href="mailto:connect@loxodontech.com"
+                            style="color:rgba(255,255,255,.55);font-size:.82rem;text-decoration:none;"
+                            class="footer-nav-link">connect@loxodontech.com</a></li>
+                    <li style="display:flex;align-items:center;gap:.6rem;"><span class="material-icons"
+                            style="font-size:.95rem;color:#3b82f6;flex-shrink:0;">call</span><a href="tel:+917675094065"
+                            style="color:rgba(255,255,255,.55);font-size:.82rem;text-decoration:none;"
+                            class="footer-nav-link">+91 767-509-4065</a></li>
+                    <li style="display:flex;align-items:center;gap:.6rem;"><span class="material-icons"
+                            style="font-size:.95rem;color:#3b82f6;flex-shrink:0;">schedule</span><span
+                            style="color:rgba(255,255,255,.55);font-size:.82rem;">Mon–Sat, 9AM–7PM IST</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Bottom bar -->
+        <div style="border-top:1px solid rgba(255,255,255,.07);padding:1.5rem;position:relative;z-index:1;">
+            <div
+                style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;">
+                <div style="display:flex;align-items:center;gap:.75rem;">
+                    <span style="font-size:.65rem;font-weight:600;color:rgba(255,255,255,.3);letter-spacing:.05em;">©
+                        2022 Loxodon Technologies. All rights reserved.</span>
+                    <span
+                        style="width:3px;height:3px;background:rgba(255,255,255,.2);border-radius:50%;flex-shrink:0;"></span>
+                    <span
+                        style="display:flex;align-items:center;gap:.3rem;font-size:.65rem;color:rgba(255,255,255,.3);"><span
+                            style="width:6px;height:6px;background:#22c55e;border-radius:50%;flex-shrink:0;"></span>All
+                        systems operational</span>
+                </div>
+                <div style="display:flex;gap:2rem;">
+                    <a href="#"
+                        style="font-size:.65rem;font-weight:600;color:rgba(255,255,255,.3);text-decoration:none;"
+                        class="footer-nav-link">Privacy Policy</a>
+                    <a href="#"
+                        style="font-size:.65rem;font-weight:600;color:rgba(255,255,255,.3);text-decoration:none;"
+                        class="footer-nav-link">Security</a>
+                    <a href="#"
+                        style="font-size:.65rem;font-weight:600;color:rgba(255,255,255,.3);text-decoration:none;"
+                        class="footer-nav-link">Terms</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('mobile-menu').classList.toggle('open');
+            document.getElementById('ham').classList.toggle('active');
+        }
+        function closeMenu() {
+            document.getElementById('mobile-menu').classList.remove('open');
+            document.getElementById('ham').classList.remove('active');
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+</body>
+
+</html>
