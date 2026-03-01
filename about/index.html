@@ -128,6 +128,77 @@
             transform: translateY(-7px) rotate(-45deg);
         }
 
+        /* ── Bottom tab bar (mobile only) ─── */
+        .mob-tab-bar {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 200;
+            background: rgba(1, 14, 45, 0.97);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-top: 1px solid rgba(255, 255, 255, .1);
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+
+        .mob-tab-bar a {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            padding: .75rem .5rem;
+            text-decoration: none;
+            color: rgba(255, 255, 255, .45);
+            font-size: .55rem;
+            font-weight: 700;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            transition: color .2s;
+            position: relative;
+        }
+
+        .mob-tab-bar a.active,
+        .mob-tab-bar a:hover {
+            color: #60a5fa;
+        }
+
+        .mob-tab-bar a.active::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 20%;
+            right: 20%;
+            height: 2px;
+            background: #2b6cee;
+            border-radius: 0 0 4px 4px;
+        }
+
+        .mob-tab-bar .tab-icon {
+            font-size: 1.35rem;
+        }
+
+        @media (max-width: 767px) {
+            .mob-tab-bar {
+                display: flex;
+            }
+
+            body {
+                padding-bottom: calc(68px + env(safe-area-inset-bottom));
+            }
+
+            #ham {
+                display: none !important;
+            }
+
+            #mobile-menu {
+                display: none !important;
+            }
+        }
+
         #mobile-menu {
             display: none;
             flex-direction: column;
@@ -1579,6 +1650,26 @@
         }, { threshold: 0.08 });
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
     </script>
+
+    <!-- ══════ MOBILE BOTTOM TAB BAR ══════ -->
+    <div class="mob-tab-bar">
+        <a href="/">
+            <span class="material-icons tab-icon">home</span>
+            Home
+        </a>
+        <a href="/services/">
+            <span class="material-icons tab-icon">build</span>
+            Services
+        </a>
+        <a href="/about/" class="active">
+            <span class="material-icons tab-icon">info</span>
+            About
+        </a>
+        <a href="#contact">
+            <span class="material-icons tab-icon">mail</span>
+            Contact
+        </a>
+    </div>
 
 </body>
 
