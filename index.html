@@ -1417,7 +1417,8 @@
                             </div>
 
                             <!-- Trust micro-badges -->
-                            <div style="display:flex;justify-content:center;gap:1.5rem;margin-top:.1rem;">
+                            <div class="form-trust-row"
+                                style="display:flex;justify-content:center;gap:1.5rem;margin-top:.1rem;flex-wrap:wrap;">
                                 <span
                                     style="display:flex;align-items:center;gap:.3rem;font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.25);">
                                     <span class="material-icons" style="font-size:.85rem;">lock</span> NDA Protected
@@ -1711,6 +1712,36 @@
         @media (max-width: 767px) {
             .form-row {
                 grid-template-columns: 1fr !important;
+            }
+
+            /* ── Contact section mobile ── */
+            #contact {
+                padding: 3.5rem 1.25rem !important;
+            }
+
+            #contact h2 {
+                font-size: 1.75rem !important;
+            }
+
+            #contact h3 {
+                font-size: 1.1rem !important;
+                line-height: 1.35 !important;
+            }
+
+            #contact>div>div:last-child {
+                /* form card */
+                padding: 1.5rem !important;
+            }
+
+            .trust-badge {
+                padding: .875rem 1rem !important;
+            }
+
+            /* micro trust row under submit button */
+            #contact .form-trust-row {
+                flex-wrap: wrap;
+                gap: .75rem !important;
+                justify-content: center;
             }
         }
 
