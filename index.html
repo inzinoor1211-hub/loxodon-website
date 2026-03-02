@@ -1717,6 +1717,13 @@
             /* ── Contact section mobile ── */
             #contact {
                 padding: 3.5rem 1.25rem !important;
+                overflow-x: hidden !important;
+            }
+
+            /* Force 1-col layout — overrides the inline style */
+            .contact-grid {
+                grid-template-columns: 1fr !important;
+                gap: 2rem !important;
             }
 
             #contact h2 {
@@ -1728,9 +1735,11 @@
                 line-height: 1.35 !important;
             }
 
-            #contact>div>div:last-child {
-                /* form card */
+            /* form card — reset any excess padding */
+            #contact .fade-in>div {
                 padding: 1.5rem !important;
+                max-width: 100% !important;
+                box-sizing: border-box !important;
             }
 
             .trust-badge {
@@ -1738,7 +1747,7 @@
             }
 
             /* micro trust row under submit button */
-            #contact .form-trust-row {
+            .form-trust-row {
                 flex-wrap: wrap;
                 gap: .75rem !important;
                 justify-content: center;
