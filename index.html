@@ -624,16 +624,19 @@
             <!-- Stats row -->
             <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:2.5rem;margin-top:3.5rem;padding-top:3rem;border-top:1px solid rgba(255,255,255,.08);"
                 class="fade-in">
-                <div style="text-align:center;"><span
-                        style="display:block;font-size:2rem;font-weight:900;color:#fff;letter-spacing:-.04em;">10+</span><span
+                <div style="text-align:center;"><span class="countup-stat" data-target="10" data-suffix="+"
+                        data-decimals="0"
+                        style="display:block;font-size:2rem;font-weight:900;color:#fff;letter-spacing:-.04em;">0+</span><span
                         style="font-size:.6rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:.25rem;display:block;">Projects
                         Delivered</span></div>
-                <div style="text-align:center;"><span
-                        style="display:block;font-size:2rem;font-weight:900;color:#fff;letter-spacing:-.04em;">2</span><span
+                <div style="text-align:center;"><span class="countup-stat" data-target="2" data-suffix=""
+                        data-decimals="0"
+                        style="display:block;font-size:2rem;font-weight:900;color:#fff;letter-spacing:-.04em;">0</span><span
                         style="font-size:.6rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:.25rem;display:block;">Active
                         Markets</span></div>
-                <div style="text-align:center;"><span
-                        style="display:block;font-size:2rem;font-weight:900;color:#fff;letter-spacing:-.04em;">99.9%</span><span
+                <div style="text-align:center;"><span class="countup-stat" data-target="99.9" data-suffix="%"
+                        data-decimals="1"
+                        style="display:block;font-size:2rem;font-weight:900;color:#fff;letter-spacing:-.04em;">0%</span><span
                         style="font-size:.6rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:.25rem;display:block;">Uptime
                         SLA</span></div>
                 <div style="text-align:center;"><span
@@ -653,19 +656,19 @@
         <div style="max-width:1280px;margin:0 auto;">
             <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:2rem;" class="stats-grid">
                 <div class="stat-item fade-in" style="text-align:center;">
-                    <div class="stat-number">10+</div>
+                    <div class="stat-number countup-stat" data-target="10" data-suffix="+" data-decimals="0">0+</div>
                     <div
                         style="font-size:.6rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#64748b;margin-top:.4rem;">
                         Projects Delivered</div>
                 </div>
                 <div class="stat-item fade-in" style="text-align:center;">
-                    <div class="stat-number">2</div>
+                    <div class="stat-number countup-stat" data-target="2" data-suffix="" data-decimals="0">0</div>
                     <div
                         style="font-size:.6rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#64748b;margin-top:.4rem;">
                         Active Markets</div>
                 </div>
                 <div class="stat-item fade-in" style="text-align:center;">
-                    <div class="stat-number">99.9%</div>
+                    <div class="stat-number countup-stat" data-target="99.9" data-suffix="%" data-decimals="1">0%</div>
                     <div
                         style="font-size:.6rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#64748b;margin-top:.4rem;">
                         Uptime SLA</div>
@@ -1489,6 +1492,47 @@
                 if (l.getAttribute('href') === '#' + current) l.classList.add('active');
             });
         }, { passive: true });
+
+        // ── Count-up roll animation ──────────────────
+        function animateCountUp(el) {
+            const target = parseFloat(el.dataset.target);
+            const suffix = el.dataset.suffix || '';
+            const decimals = parseInt(el.dataset.decimals) || 0;
+            const duration = 900; // ms
+            const startTime = performance.now();
+
+            function easeOutQuart(t) {
+                return 1 - Math.pow(1 - t, 4);
+            }
+
+            function step(now) {
+                const elapsed = now - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const eased = easeOutQuart(progress);
+                const current = eased * target;
+                el.textContent = current.toFixed(decimals) + suffix;
+                if (progress < 1) {
+                    requestAnimationFrame(step);
+                } else {
+                    el.textContent = target.toFixed(decimals) + suffix;
+                }
+            }
+
+            requestAnimationFrame(step);
+        }
+
+        const countupObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCountUp(entry.target);
+                    countupObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+
+        document.querySelectorAll('.countup-stat').forEach(el => {
+            countupObserver.observe(el);
+        });
     </script>
 
     <!-- ══════ MOBILE BOTTOM TAB BAR ══════ -->
