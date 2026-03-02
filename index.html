@@ -508,6 +508,14 @@
 
         /* ── Mobile tweaks ────────────── */
         @media (max-width: 767px) {
+
+            /* Center logo on mobile */
+            .nav-logo {
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
             h1 {
                 font-size: 3rem !important;
                 line-height: 1.05 !important;
@@ -566,7 +574,7 @@
             style="max-width:1280px;margin:0 auto;padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;height:72px;">
 
             <!-- Logo -->
-            <a href="#" style="display:flex;align-items:center;text-decoration:none;flex-shrink:0;">
+            <a href="/" class="nav-logo" style="display:flex;align-items:center;text-decoration:none;flex-shrink:0;">
                 <img src="/loxodon-logo.png" alt="Loxodon" style="height:36px;width:auto;object-fit:contain;"
                     onerror="this.style.display='none';document.getElementById('logo-fallback').style.display='flex'">
                 <div id="logo-fallback" style="display:none;align-items:center;gap:4px;">
