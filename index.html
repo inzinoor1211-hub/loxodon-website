@@ -558,25 +558,7 @@
             }
         }
 
-        /* ── Step number sequential green pulse ── */
-        @keyframes step-ping {
-
-            0%,
-            100% {
-                color: rgba(43, 108, 238, .2);
-            }
-
-            8% {
-                color: #22c55e;
-                text-shadow: 0 0 18px rgba(34, 197, 94, .35);
-            }
-
-            22% {
-                color: rgba(43, 108, 238, .2);
-                text-shadow: none;
-            }
-        }
-
+        /* ── Step number sequential green reveal ── */
         .step-num {
             font-size: 3rem;
             font-weight: 900;
@@ -584,27 +566,13 @@
             line-height: 1;
             margin-bottom: 1rem;
             color: rgba(43, 108, 238, .2);
+            transition: color 0.55s ease, text-shadow 0.55s ease;
         }
 
-        /* animation only starts after .active is added via JS on scroll */
+        /* each number turns green and stays — applied via JS with staggered setTimeout */
         .step-num.active {
-            animation: step-ping 4.8s ease-in-out infinite;
-        }
-
-        .step-num-1 {
-            animation-delay: 0s;
-        }
-
-        .step-num-2 {
-            animation-delay: 1.2s;
-        }
-
-        .step-num-3 {
-            animation-delay: 2.4s;
-        }
-
-        .step-num-4 {
-            animation-delay: 3.6s;
+            color: #22c55e;
+            text-shadow: 0 0 16px rgba(34, 197, 94, .28);
         }
 
         @media (max-width: 767px) {
@@ -1938,12 +1906,15 @@
             countupObserver.observe(el);
         });
 
-        // ── Step number animation: starts on scroll into view ──
+        // ── Step number animation: turns green in sequence on scroll ──
         const stepSection = document.getElementById('how-we-work');
         if (stepSection) {
             const stepObserver = new IntersectionObserver((entries) => {
                 if (entries[0].isIntersecting) {
-                    document.querySelectorAll('.step-num').forEach(el => el.classList.add('active'));
+                    const nums = document.querySelectorAll('.step-num');
+                    nums.forEach((el, i) => {
+                        setTimeout(() => el.classList.add('active'), i * 700);
+                    });
                     stepObserver.disconnect();
                 }
             }, { threshold: 0.3 });
