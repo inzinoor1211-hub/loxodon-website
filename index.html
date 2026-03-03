@@ -584,6 +584,10 @@
             line-height: 1;
             margin-bottom: 1rem;
             color: rgba(43, 108, 238, .2);
+        }
+
+        /* animation only starts after .active is added via JS on scroll */
+        .step-num.active {
             animation: step-ping 4.8s ease-in-out infinite;
         }
 
@@ -1933,6 +1937,18 @@
         document.querySelectorAll('.countup-stat').forEach(el => {
             countupObserver.observe(el);
         });
+
+        // ── Step number animation: starts on scroll into view ──
+        const stepSection = document.getElementById('how-we-work');
+        if (stepSection) {
+            const stepObserver = new IntersectionObserver((entries) => {
+                if (entries[0].isIntersecting) {
+                    document.querySelectorAll('.step-num').forEach(el => el.classList.add('active'));
+                    stepObserver.disconnect();
+                }
+            }, { threshold: 0.3 });
+            stepObserver.observe(stepSection);
+        }
     </script>
 
     <!-- ══════ MOBILE BOTTOM TAB BAR ══════ -->
